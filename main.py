@@ -59,3 +59,47 @@ response = completion(model="command-nightly", messages=messages)
 print(response)
 
 
+# 00_swarm/basic_swarm_simulation.py
+
+# Simulated swarm of agents
+agents = [lambda x: x + 1, lambda x: x * 2, lambda x: x - 3]
+
+def swarm_process(input_val):
+    result = input_val
+    for agent in agents:
+        result = agent(result)
+    return result
+
+print("Swarm Output:", swarm_process(5))  # Output: 9
+
+
+# 02_openrouter/query_openrouter.py
+
+import requests
+
+API_KEY = "your_openrouter_api_key"
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+
+data = {
+    "model": "openrouter/openai/gpt-3.5-turbo",
+    "messages": [{"role": "user", "content": "Hello, who are you?"}]
+}
+
+response = requests.post("https://openrouter.ai/api/v1/chat/completions", json=data, headers=headers)
+print(response.json()["choices"][0]["message"]["content"])
+
+# 03_litellm_openai_agent/agent_example.py
+
+import litellm
+
+litellm.api_key = "your_openai_api_key"
+litellm.model = "gpt-3.5-turbo"
+
+response = litellm.completion(
+    messages=[{"role": "user", "content": "What is 2 + 2?"}]
+)
+
+print(response['choices'][0]['message']['content'])
