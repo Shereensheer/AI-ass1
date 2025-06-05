@@ -13,3 +13,8 @@ This repo explores the following:
 
 ```bash
 pip install -r requirements.txt
+pip install litellm
+
+pip install uvicorn uv
+
+
