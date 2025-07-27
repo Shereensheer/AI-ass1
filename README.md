@@ -18,3 +18,4 @@ pip install litellm
 pip install uvicorn uv
 
 
+"# llm-swarm-openrouter" 
